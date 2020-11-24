@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css"/>
+</head>
+
+<body> 
+    <div class="container"> 
+        <div>
+            <form
+                id="formProduto"
+                name="formProduto"
+                class="formProduto"
+                action="#"
+            >
+                <label for="nome">Nome</label>
+                <input name="nome" type="text" required/>
+
+                <label for="descricao">Descrição</label>
+                <textarea name="descricao" rows="5" cols="50" required></textarea>
+
+                <button type="submit">Salvar</button>
+                <button type="reset">Limpar</button>
+            </form>
+        </div>
+
+        <div id="listaProduto">
+        </div>
+    </div>
+
+    <script src="scripts/produto.js"></script>
+</body>
+</html>

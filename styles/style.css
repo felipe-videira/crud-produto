@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.formProduto input,
+.formProduto textarea {
+    display: block;
+    margin-bottom: 21px;
+}
+
+.itemProduto {
+    font-weight: bold;
+    font-size: 14px;
+}
