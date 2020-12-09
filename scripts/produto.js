@@ -13,8 +13,8 @@ function onSubmitFormProduto(evento) {
         descricao: document.forms['formProduto']['descricao'].value
     };
 
-    requisicao(function() {
-        atualizarLista(produto);
+    requisicao(function(resposta) {
+        atualizarLista(resposta);
     }, produto.id ? 'PUT' : 'POST', '/produto', produto);
 }
 
@@ -40,7 +40,7 @@ function atualizarLista(produto) {
 
     const item = document.createElement('div');
 
-    const titulo = document.createElement('span')
+    const titulo = document.createElement('span');
 
     const botaoExcluir = criarButton(function() {
         deletarProduto(produto)
@@ -54,7 +54,7 @@ function atualizarLista(produto) {
     titulo.innerText = produto.nome;
     item.classList.add("itemProduto");
     item.id = 'id' + produto.id;
-    
+
     item.appendChild(titulo);
     item.appendChild(botaoExcluir);
     item.appendChild(botaoEditar);
@@ -65,11 +65,11 @@ function atualizarLista(produto) {
 function criarButton(onclick, caminhoIcone, id) {
     const botao = document.createElement('button');
     botao.type = 'button';
-    botao.id = id
+    botao.id = id;
 
     botao.addEventListener('click', onclick);
 
-    const icone = document.createElement('img')
+    const icone = document.createElement('img');
     icone.src = caminhoIcone;
     botao.appendChild(icone);
     return botao;
@@ -84,24 +84,24 @@ function deletarProduto(produto) {
     }, 'DELETE', '/produto/' + produto.id);
 };
 
-let idEditar ;
+let idEditar;
 
 function editarProduto({ id }) {
     document.forms['formProduto']['id'].value = id;
-    requisicao(function(produto){
+    requisicao(function(produto) {
         document.forms['formProduto']['nome'].value = produto.nome;
         document.forms['formProduto']['descricao'].value = produto.descricao;
     }, 'GET', '/produto/' + id);
 
-    document.querySelector('#botaoEditarId'+ id).style.backgroundColor = 'orange'
+    document.querySelector('#botaoEditarId' + id).style.backgroundColor = 'orange';
 
 
 
-    if(idEditar && id !== idEditar) {
-        document.querySelector('#botaoEditarId'+ idEditar).style.backgroundColor = '#EFEFEF'
+    if (idEditar && id !== idEditar) {
+        document.querySelector('#botaoEditarId' + idEditar).style.backgroundColor = '#EFEFEF';
     }
-    
-    idEditar = id
+
+    idEditar = id;
 };
 
 function requisicao(onload, metodo, caminho, dados) {
